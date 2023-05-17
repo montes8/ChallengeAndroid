@@ -1,4 +1,4 @@
-package com.gb.`val`.mobilechallenget.ui.theme
+package com.gb.vale.mobilechallenget.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

@@ -5,7 +5,7 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface ChallengeService {
-    @GET("api/user/loadMovi")
+    @GET("api/user/loadRecipes")
      suspend fun loadRecipes(): Response<List<RecipeResponse>>
 
 }
