@@ -2,20 +2,19 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
 }
 
-def CONFIG = { k -> "\"${project.properties.get(k)}\"" }
-def API_HOST = "API_HOST"
 
 android {
-    namespace 'com.gb.val.mobilechallenget'
-    compileSdk 33
+    compileSdkVersion 33
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.gb.val.mobilechallenget"
+        applicationId "com.gb.vale.mobilechallenget"
         minSdk 24
-        targetSdk 33
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
 
@@ -31,12 +30,11 @@ android {
             minifyEnabled true
             debuggable false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField "String", API_HOST, CONFIG("api.server.url")
         }
 
         debug {
             debuggable true
-            buildConfigField "String", API_HOST, CONFIG("api.server.url")
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -50,8 +48,9 @@ android {
     buildFeatures {
         compose true
     }
+
     composeOptions {
-        kotlinCompilerExtensionVersion '1.2.0'
+        kotlinCompilerExtensionVersion = "1.2.0-beta03"
     }
     packagingOptions {
         resources {

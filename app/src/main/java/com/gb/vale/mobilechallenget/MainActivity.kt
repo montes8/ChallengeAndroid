@@ -1,4 +1,4 @@
-package com.gb.`val`.mobilechallenget
+package com.gb.vale.mobilechallenget
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
