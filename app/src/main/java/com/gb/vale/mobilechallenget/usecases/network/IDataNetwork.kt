@@ -4,6 +4,6 @@ import com.gb.vale.mobilechallenget.model.RecipeModel
 
 interface IDataNetwork {
 
-     suspend fun loadRecipes( ): List<RecipeModel>?
+     suspend fun loadRecipes( ): List<RecipeModel>
 
 }
