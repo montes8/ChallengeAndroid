@@ -4,5 +4,7 @@ import com.gb.vale.mobilechallenget.model.RecipeModel
 
 data class RecipesUiState(
     var recipes: List<RecipeModel> = emptyList(),
-    var searchQuery: String = ""
+    var recipesFilter: List<RecipeModel> = emptyList(),
+    var searchQuery: String = "",
+    var filter: Boolean = false
 )

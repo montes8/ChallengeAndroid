@@ -1,7 +1,7 @@
 package com.gb.vale.mobilechallenget.ui.theme.navigation
 
 const val ROOT_GRAPH_ROUTE = "root"
-const val AUTH_GRAPH_ROUTE = "authentication"
+const val HOME_GRAPH_ROUTE = "authentication"
 
 sealed class Screen (open val route: String) {
     object HomeScreen : Screen("home_screen")

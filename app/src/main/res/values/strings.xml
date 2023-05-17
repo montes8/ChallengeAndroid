@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MobileChallengeT</string>
+    <string name="text_title_recipes">Lista de recetas</string>
+
 </resources>

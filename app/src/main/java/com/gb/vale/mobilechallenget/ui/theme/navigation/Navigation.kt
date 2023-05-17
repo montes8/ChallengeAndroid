@@ -5,6 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.gb.vale.mobilechallenget.presentation.detail.DetailScreen
 import com.gb.vale.mobilechallenget.presentation.home.HomeScreen
 
 @Composable
@@ -23,11 +24,10 @@ fun Navigation() {
             )
         }
 
-        authNavGraph(navController = navController)
-
-        composable(route = Screen.HomeScreen.route) {
-            HomeScreen(hiltViewModel(),navController)
+        composable(route = Screen.DetailScreen.route) {
+            DetailScreen(hiltViewModel(),navController)
         }
+
     }
 
 }

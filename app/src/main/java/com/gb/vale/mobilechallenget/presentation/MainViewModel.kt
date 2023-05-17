@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(private val dataUseCase: DataUseCase) : 
 
 
     var uiState by mutableStateOf(RecipesUiState())
-        private set
+         set
 
 
     private val _eventFlow = MutableSharedFlow<RecipeUiEvent>()
@@ -34,14 +34,8 @@ class MainViewModel @Inject constructor(private val dataUseCase: DataUseCase) : 
 
     private fun loadRecipes() {
         viewModelScope.launch {
-            val fetchRecipesFlow = flow {
-                val response = dataUseCase.loadRecipes()
-                emit(response)
-            }
-
-            fetchRecipesFlow.collect{
-                uiState.recipes = it
-            }
+            val response =  dataUseCase.loadRecipes()
+            uiState = uiState.copy(recipes = response)
         }
     }
 
@@ -51,13 +45,16 @@ class MainViewModel @Inject constructor(private val dataUseCase: DataUseCase) : 
                 is RecipeEvent.DetailContact -> {
                     _eventFlow.emit(RecipeUiEvent.NavigateToDetail)
                 }
+                is RecipeEvent.SearchContact -> {
+                    uiState = uiState.copy(searchQuery = event.query)
+                }
             }
         }
     }
 
     fun listFilter() {
         uiState = uiState.copy(
-            recipes = filterRecipes(uiState.searchQuery, ArrayList(uiState.recipes)),)
+            recipesFilter = filterRecipes(uiState.searchQuery, ArrayList(uiState.recipes)))
     }
 
     private fun filterRecipes(textSearch: String, listModel: ArrayList<RecipeModel>): List<RecipeModel> {
