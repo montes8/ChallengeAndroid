@@ -3,7 +3,6 @@ package com.gb.vale.mobilechallenget.presentation.home
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,6 +32,7 @@ import com.gb.vale.mobilechallenget.model.RecipeModel
 import com.gb.vale.mobilechallenget.presentation.MainViewModel
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 import com.gb.vale.mobilechallenget.utils.EMPTY
+import com.google.gson.Gson
 import kotlinx.coroutines.flow.collectLatest
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -45,11 +45,14 @@ fun HomeScreen(viewModel: MainViewModel, navController: NavController) {
         viewModel.eventFlow.collectLatest { event ->
             when (event) {
                 is RecipeUiEvent.NavigateToDetail -> {
-                    navController.navigate(Screen.DetailScreen.route)
+                    val data : String = Gson().toJson(event.recipes)
+                    navController.navigate(Screen.DetailScreen.withArgs(
+                        data))
                 }
 
                 is RecipeUiEvent.NavigateToMap -> {
                 }
+                else -> {}
             }
         }
     }
@@ -57,14 +60,14 @@ fun HomeScreen(viewModel: MainViewModel, navController: NavController) {
 
         Column( modifier = Modifier.padding(20.dp)
         ){
-            SearchContact(viewModel)
-            if (!viewModel.uiState.filter)ListInitialContact(viewModel)
+            SearchRecipes(viewModel)
+            if (!viewModel.uiState.filter)ListInitialRecipes(viewModel)
             viewModel.uiState = viewModel.uiState.copy(filter = viewModel.uiState.searchQuery.isNotEmpty())
             if (viewModel.uiState.searchQuery.isNotEmpty()) {
 
                 handler.removeCallbacks(runnable)
                 handler.postDelayed(runnable, 150)
-                ListSearchContact(viewModel)
+                ListSearchRecipes(viewModel)
             }
         }
 
@@ -73,7 +76,7 @@ fun HomeScreen(viewModel: MainViewModel, navController: NavController) {
 
 @SuppressLint("SuspiciousIndentation")
 @Composable
-private fun SearchContact(
+private fun SearchRecipes(
     viewModel: MainViewModel
 ) {
     val focusRequester = FocusRequester()
@@ -85,7 +88,7 @@ private fun SearchContact(
                 BasicTextField(
                     modifier = Modifier
                         .wrapContentHeight()
-                        .focusRequester(focusRequester),
+                        .focusRequester(focusRequester) ,
                     value = viewModel.uiState.searchQuery,
                     cursorBrush = SolidColor(MaterialTheme.colors.primary),
                     onValueChange = {
@@ -112,7 +115,7 @@ private fun SearchContact(
 
 
 @Composable
-fun ListInitialContact(
+fun ListInitialRecipes(
     viewModel: MainViewModel
 ) {
     Column(
@@ -136,9 +139,9 @@ fun ListInitialContact(
                     .fillMaxSize()
             ) {
                 items(viewModel.uiState.recipes) { recipe ->
-                    ContactItem(
+                    RecipesItem(
                         recipe = recipe,
-                        openNewChatAction = { viewModel.onEvent(RecipeEvent.DetailContact) }
+                        openNewChatAction = { viewModel.onEvent(RecipeEvent.DetailContact(recipe)) }
                     )
                 }
             }
@@ -147,7 +150,7 @@ fun ListInitialContact(
 }
 
 @Composable
-fun ContactItem(
+fun RecipesItem(
     recipe: RecipeModel,
     openNewChatAction: () -> Unit
 ) {
@@ -185,11 +188,10 @@ fun ContactItem(
 }
 
 @Composable
-fun ListSearchContact(viewModel: MainViewModel) {
+fun ListSearchRecipes(viewModel: MainViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color.White)
     ) {
         if (viewModel.uiState.recipesFilter.isNotEmpty()) {
             Text(
@@ -204,10 +206,10 @@ fun ListSearchContact(viewModel: MainViewModel) {
                 modifier = Modifier
                     .fillMaxSize()
             ) {
-                items(viewModel.uiState.recipesFilter) { contact ->
-                    ContactItem(
-                        recipe = contact,
-                        openNewChatAction = { viewModel.onEvent(RecipeEvent.DetailContact) }
+                items(viewModel.uiState.recipesFilter) { recipe ->
+                    RecipesItem(
+                        recipe = recipe,
+                        openNewChatAction = { viewModel.onEvent(RecipeEvent.DetailContact(recipe))  }
                     )
                 }
             }

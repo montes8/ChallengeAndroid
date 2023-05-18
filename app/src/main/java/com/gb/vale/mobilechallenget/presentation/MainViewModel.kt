@@ -13,8 +13,6 @@ import com.gb.vale.mobilechallenget.usecases.DataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
-
-import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -43,10 +41,14 @@ class MainViewModel @Inject constructor(private val dataUseCase: DataUseCase) : 
         viewModelScope.launch {
             when (event) {
                 is RecipeEvent.DetailContact -> {
-                    _eventFlow.emit(RecipeUiEvent.NavigateToDetail)
+                    _eventFlow.emit(RecipeUiEvent.NavigateToDetail(event.recipe))
                 }
                 is RecipeEvent.SearchContact -> {
                     uiState = uiState.copy(searchQuery = event.query)
+                }
+
+                is RecipeEvent.BackHomeRecipes -> {
+                    _eventFlow.emit(RecipeUiEvent.NavigateToBackHome)
                 }
             }
         }
