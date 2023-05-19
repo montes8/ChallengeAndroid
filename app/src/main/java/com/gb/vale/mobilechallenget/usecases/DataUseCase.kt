@@ -1,7 +1,6 @@
 package com.gb.vale.mobilechallenget.usecases
 
 import com.gb.vale.mobilechallenget.model.RecipeModel
-import com.gb.vale.mobilechallenget.usecases.network.IDataDB
 import com.gb.vale.mobilechallenget.usecases.network.IDataNetwork
 
 import javax.inject.Inject

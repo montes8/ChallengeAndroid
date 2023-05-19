@@ -13,13 +13,13 @@ import coil.transform.CircleCropTransformation
 
 
 @Composable
-fun CircleAvatar(modifier: Modifier = Modifier.size(80.dp).clip(CircleShape), image: String?) {
+fun CircleAvatar(image: String?) {
     AsyncImage(
         model = ImageRequest.Builder(LocalContext.current)
             .data(image)
             .transformations(CircleCropTransformation())
             .build(),
         contentDescription = null,
-        modifier  = modifier
+        modifier  =  Modifier.size(80.dp).clip(CircleShape)
     )
 }

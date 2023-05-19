@@ -2,15 +2,11 @@ package com.gb.vale.mobilechallenget.presentation.map
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gb.vale.mobilechallenget.repository.di.IoDispatcher
 import com.gb.vale.mobilechallenget.usecases.DataDBUseCase
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.rememberCameraPositionState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -39,6 +35,4 @@ class MapViewModel @Inject constructor(
             uiStateMap = uiStateMap.copy(recipeModel = response,loadMap = true)
         }
     }
-
-
 }

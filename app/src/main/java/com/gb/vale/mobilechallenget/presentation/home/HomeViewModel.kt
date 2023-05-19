@@ -22,9 +22,7 @@ class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase,pri
                                         private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
-
     var uiState by mutableStateOf(RecipesUiState())
-
     var uiLoading by mutableStateOf(true)
     var floatingButton by mutableStateOf(true)
 
@@ -33,7 +31,6 @@ class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase,pri
             delay(500)
             loadRecipes()
         }
-
     }
 
      fun loadRecipes() {

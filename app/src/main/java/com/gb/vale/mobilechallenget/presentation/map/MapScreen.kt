@@ -70,9 +70,7 @@ fun MapScreen(viewModel: MapViewModel) {
                 }
             }
         }
-
     }
-
 }
 
 
@@ -135,10 +133,8 @@ fun GoogleMapView(
                                 overflow = TextOverflow.Ellipsis
                             )
                         }
-
                 }
             }
-
             content()
         }
 

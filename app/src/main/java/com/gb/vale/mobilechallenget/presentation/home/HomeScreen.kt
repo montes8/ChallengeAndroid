@@ -15,7 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.sharp.Close
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,7 +24,6 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -35,7 +33,6 @@ import androidx.navigation.NavController
 import com.gb.vale.mobilechallenget.R
 import com.gb.vale.mobilechallenget.components.CircleAvatar
 import com.gb.vale.mobilechallenget.model.RecipeModel
-import com.gb.vale.mobilechallenget.presentation.MapUpdateActivity
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 import com.gb.vale.mobilechallenget.utils.EMPTY
 
@@ -73,10 +70,6 @@ fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
             }
         }
     }
-
-
-
-
 }
 
 @SuppressLint("SuspiciousIndentation")
@@ -115,8 +108,6 @@ private fun SearchRecipes(
 
             }
         )
-
-
 }
 
 

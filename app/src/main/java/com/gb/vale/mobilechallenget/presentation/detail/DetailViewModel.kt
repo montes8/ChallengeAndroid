@@ -20,11 +20,9 @@ class DetailViewModel @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
-
     var uiStateDetail by mutableStateOf(DetailUiState())
 
     var idDetail : Long = 1
-
 
     init {
         viewModelScope.launch(ioDispatcher) {
@@ -39,6 +37,4 @@ class DetailViewModel @Inject constructor(
             uiStateDetail = uiStateDetail.copy(recipeModel = response)
         }
     }
-
-
 }
