@@ -6,13 +6,19 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gb.vale.mobilechallenget.model.RecipeModel
+import com.gb.vale.mobilechallenget.repository.di.IoDispatcher
+import com.gb.vale.mobilechallenget.usecases.DataDBUseCase
 import com.gb.vale.mobilechallenget.usecases.DataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase
+class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase,private val dataDBUseCase: DataDBUseCase,
+                                        @IoDispatcher
+                                        private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
 
 
@@ -24,11 +30,17 @@ class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase
         loadRecipes()
     }
 
-    private fun loadRecipes() {
-        viewModelScope.launch {
+     fun loadRecipes() {
+        viewModelScope.launch(ioDispatcher) {
             val response =  dataUseCase.loadRecipes()
             uiLoading = false
             uiState = uiState.copy(recipes = response)
+        }
+    }
+
+    fun loadInsertDataBase(){
+        viewModelScope.launch(ioDispatcher) {
+             dataDBUseCase.insertData()
         }
     }
 

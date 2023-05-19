@@ -5,7 +5,7 @@ import com.gb.vale.mobilechallenget.utils.EMPTY
 import com.google.gson.annotations.SerializedName
 
 data class RecipeResponse(
-    @SerializedName("id") val id : Int?,
+    @SerializedName("id") val id : Long?,
     @SerializedName("title") val title : String?,
     @SerializedName("description") val description : String?,
     @SerializedName("preparation") val preparation : String?,
@@ -17,10 +17,11 @@ data class RecipeResponse(
 ){
     companion object{
         fun loadToRecipes(response : List<RecipeResponse>) = response.map {
-            RecipeModel(id = it.id?.toLong()?:0,title = it.title?: EMPTY,
+            RecipeModel(id = it.id?:0,title = it.title?: EMPTY,
                 description = it.description?:EMPTY,preparation= it.preparation?:EMPTY,
                 urlImg = it.urlImg?:EMPTY, institute = it.institute?:EMPTY,
-              latitude = it.latitude?:"0.0", longitude = it.latitude?:"0.0")
+                addressInstitute = it.addressInstitute?:EMPTY,
+              latitude = it.latitude?:"0.0", longitude = it.longitude?:"0.0")
         }
     }
 }

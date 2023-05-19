@@ -3,6 +3,7 @@ package com.gb.vale.mobilechallenget.repository.db.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.gb.vale.mobilechallenget.model.RecipeModel
+import com.gb.vale.mobilechallenget.repository.network.response.RecipeResponse
 import com.gb.vale.mobilechallenget.utils.EMPTY
 
 @Entity
@@ -32,6 +33,20 @@ data class RecipeEntity(
     companion object{
         fun toListRecipe(response : List<RecipeEntity>)= response.map {
             RecipeModel(
+                id = it.id?:0L,
+                title = it.title,
+                description = it.description,
+                preparation = it.preparation,
+                urlImg = it.urlImg,
+                institute = it.institute,
+                addressInstitute = it.addressInstitute,
+                latitude = it.latitude,
+                longitude = it.longitude,
+            )
+        }
+
+        fun toListRecipeResponse(response : List<RecipeEntity>)= response.map {
+            RecipeResponse(
                 id = it.id?:0L,
                 title = it.title,
                 description = it.description,

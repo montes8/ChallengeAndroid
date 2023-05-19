@@ -8,6 +8,7 @@ import com.gb.vale.mobilechallenget.model.RecipeModel
 import com.gb.vale.mobilechallenget.repository.db.entity.RecipeEntity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.util.regex.Pattern
 
 fun Context.isFullScreenGestureModeEnabled(): Boolean {
     val defaultNavigationSystem = 0
@@ -32,20 +33,24 @@ fun parseStringGson(jsonString: String): RecipeModel {
     return jsonData.fromJson(jsonString, object : TypeToken<RecipeModel>() {}.type)
 }
 
-fun parseStringGsonList(jsonString: String): ArrayList<RecipeEntity> {
+fun parseStringGsonList(jsonString: String): List<RecipeEntity> {
     val jsonData = Gson()
-    return jsonData.fromJson(jsonString, object : TypeToken<ArrayList<RecipeEntity>>() {}.type)
+    return jsonData.fromJson(jsonString, object : TypeToken<List<RecipeEntity>>() {}.type)
 }
 
 
-class RecipeModelType : NavType<RecipeModel>(isNullableAllowed = false) {
-    override fun get(bundle: Bundle, key: String): RecipeModel? {
-        return bundle.getParcelable(key)
-    }
-    override fun parseValue(value: String): RecipeModel {
-        return Gson().fromJson(value, RecipeModel::class.java)
-    }
-    override fun put(bundle: Bundle, key: String, value: RecipeModel) {
-        bundle.putParcelable(key, value)
-    }
+fun String.isEmailValid(): Boolean {
+    return Pattern.compile(
+        "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]|[\\w-]{2,}))@"
+                + "((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                + "([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                + "[0-9]{1,2}|25[0-5]|2[0-4][0-9]))|"
+                + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$"
+    ).matcher(this).matches()
+}
+
+
+fun String.lengthPlus1(): Int {
+    return this.length + 1
 }

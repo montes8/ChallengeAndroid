@@ -15,7 +15,7 @@ const val listJson = "[\n" +
         "    \"preparation\": \"Lo primero es cocer la pasta, puedes utilizar medio kilo de fideos canuto o espagueti grueso, en abundante agua, con un chorrito de aceite y sal al gusto. El tiempo de cocción debe ser el indicado en el empaque. Mientras tanto, en una sartén pon a calentar el aceite de oliva con una cebolla roja picada muy finamente hasta que se tornen transparentes. Luego, agrega el comino y los ajos. Es momento de agregar las espinacas junto a la albahaca, ambas licuadas con sal y pimienta al gusto. Debes freír hasta que se consuma totalmente el agua y déjalo entibiar. Ahora, coloca en la licuadora la mezcla que acabas de hacer junto a las nueces, la leche, el queso y sal al gusto. La salsa no debe quedar muy seca, por lo que puedes añadir más leche o agua de ser necesario. Finalmente, agrega la salsa a la pasta y es momento de servir. Cuando este listo servimos en un plato mezclando nuestra salsa verde con los fideos, añadimos un poco de queso parmesano al gusto.\",\n" +
         "    \"urlImg\": \"https://www.comidastipicasperuanas.com/wp-content/uploads/2022/03/Receta-de-tallarines-verdes-Comidas-Peruanas.jpg\",\n" +
         "    \"institute\": \"Establecimiento 01\",\n" +
-        "    \"AddressInstitute\": \"Buenos aire, formosa 234555\",\n" +
+        "    \"addressInstitute\": \"Buenos aire, formosa 234555\",\n" +
         "    \"latitude\": \"-11.99405732\",\n" +
         "    \"longitude\": \"-77.06241231\"\n" +
         "  },\n" +
@@ -26,7 +26,7 @@ const val listJson = "[\n" +
         "    \"preparation\": \"Primero debemos macerar el cabrito con medio ajo, media cucharada de comino, sal y media tasa de chicha de jora durante hora y media Luego doramos en aceite la cebolla con el resto de ajo, media cucharada de comino, ají panca, ají amarillo y ají mirasol. Añadimos el zapallo loche y dejamos cocinar por 10 minutos Escurrimos el Cabrito y lo doramos. Añadimos el aderezo con el resto de la chicha de jora y dejamos cocinar durante 30 minutos aproximadamente. Por último, sazonamos al gusto y agregamos el cilantro picado.\",\n" +
         "    \"urlImg\": \"https://decomidaperuana.com/wp-content/uploads/2017/08/receta-de-seco-de-cabrito.jpg\",\n" +
         "    \"institute\": \"Establecimiento 02\",\n" +
-        "    \"AddressInstitute\": \"Buenos aire, formosa 234555\",\n" +
+        "    \"addressInstitute\": \"Buenos aire, formosa 234555\",\n" +
         "    \"latitude\": \" -11.99041933\",\n" +
         "    \"longitude\": \"-77.06290144\"\n" +
         "  },\n" +
@@ -37,7 +37,7 @@ const val listJson = "[\n" +
         "    \"preparation\": \"Primero en una cacerola ponemos sal, pimienta negra molida, comino, ajo molido, una pizca de azúcar, un chorro de vinagre, un chorro de cerveza rubia. Luego colocamos el pollo y lo aderezamos con esa combinación por dentro y por fuera. Ahora le añadimos un poco de romero en polvo. Mientras calentamos el horno y ponemos el pollo en una fuente con toda su macerado para luego colocarlo en el horno por unos 45 minutos con una temperatura entre 200 y 220 grados, cada 15 minutos se debe rociar con su jugo y grasa para que dore mejor. Aparte podemos preparar las papas fritas bien crujientes para acompañar, también preparar una ensalada de su gusto, mayonesa casera, mostaza, ají casero, una chicha morada o limonada, servir todo en la mesa y listo a disfr  I  utar del pollito a la brasa hecho con tus propias manos.\",\n" +
         "    \"urlImg\": \"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBB6Yzu7VokGFopId7Orj_szs6kz6B9xyjXK1SNnW3RGc738m9MDWZ6182EgugA1kYLI&usqp=CAU\",\n" +
         "    \"institute\": \"Establecimiento 03\",\n" +
-        "    \"AddressInstitute\": \"Buenos aire, formosa 234555\",\n" +
+        "    \"addressInstitute\": \"Buenos aire, formosa 234555\",\n" +
         "    \"latitude\": \"-12.00681565\",\n" +
         "    \"longitude\": \"-77.05884285\"\n" +
         "  },\n" +
@@ -48,7 +48,7 @@ const val listJson = "[\n" +
         "    \"preparation\": \"Cortamos dos cebollas grandes rojas y 4 tomates chicos en tiras gruesas, un ají amarillo en cortes delgados, un poco de cebolla china, una cucharada de ajo molido y dejamos listos los ingredientes. Necesitamos lomo fino de Res o bistec, cortado en tiras gruesas, arrancamos las hojas de 8 tallos de culantro. Listas ocho cucharadas de vinagre mezclado con cuatro cucharas de sillao. Para acompañar ya debemos tener el arroz blanco preparado y las papas fritas bien crocantes. Una vez que todo está listo, echamos aceite vegetal en una sartén grande, subimos el fuego al máximo y cuando esté botando humo echamos la mitad de la carne que ya habremos sazonado con sal y pimienta. Echamos un poco de la mezcla de sillao y vinagre, colocamos la mitad de la cebolla por un minuto y retiramos, ponemos la otra mitad por otro minuto y retiramos. Echamos la mitad de los tomates, por dos minutos y retiramos, luego echamos la otra mitad, por dos minutos, retiramos y listo. Hemos logrado un sabor increíble para la carne, ahora vamos a mezclarlo todo, en la misma sartén echamos aceite y dejamos que caliente. Añadimos ajo molido por unos segundos, toda la carne, todo el tomate, añadimos el ají amarillo, toda la cebolla y lo que queda del sillao y vinagre. Dejamos por unos minutos, añadimos la cebolla china y las hojas de culantro, y listo, nuestro lomo saltado ya quedo.\",\n" +
         "    \"urlImg\": \"https://i0.wp.com/lacocinalatina.club/wp-content/uploads/2021/01/Lomo-Saltado-Peruano-Web.jpg?fit=700%2C467&ssl=1\",\n" +
         "    \"institute\": \"Establecimiento 04\",\n" +
-        "    \"AddressInstitute\": \"Buenos aire, formosa 234555\",\n" +
+        "    \"addressInstitute\": \"Buenos aire, formosa 234555\",\n" +
         "    \"latitude\": \"-12.05688609\",\n" +
         "    \"longitude\": \"-77.03773475\"\n" +
         "  },\n" +
@@ -59,7 +59,7 @@ const val listJson = "[\n" +
         "    \"preparation\": \"En una sartén echamos un chorro de aceite con media tasa de cebolla china picada muy fina. Una cucharada de ajo molido, una cucharada de kion rallado. Dejamos freír por dos minutos, añadimos media tasa de pimiento rojo picado en trozos chiquitos, una taza de alguna carne que sea de tu gusto. Dejamos dorar todo por dos minutos. Añadimos cuatro tazas de arroz cocido, añadimos el fuego al máximo y dejamos dorar hasta que el arroz se esté friendo. Cuando esté friéndose bien, damos vuelta al arroz y lo mezclamos, dejamos de mover y volvemos a dejar dorar por unos segundos. Repetimos el mismo proceso de mezclar y dejar dorar por al menos 3 veces. Añadimos cuatro cucharadas de aceite de ajonjolí, ocho cucharadas de sillao, sal, pimienta, un poquito de azúcar. Una cucharada de salsa de ostión, dos tasas de cebolla china, añadimos cuatro huevos en modo de tortilla, damos la última movida y a comer.\",\n" +
         "    \"urlImg\": \"https://elcomercio.pe/resizer/l6qgvlMpsT26TX8DrMJBVN7ADw0=/1200x900/smart/filters:format(jpeg):quality(75)/cloudfront-us-east-1.images.ar  I  cpublishing.com/elcomercio/A7KLHTGQDZECTBXAZPL4KG2WZI.jpg\",\n" +
         "    \"institute\": \"Establecimiento 05\",\n" +
-        "    \"AddressInstitute\": \"Buenos aire, formosa 234555\",\n" +
+        "    \"addressInstitute\": \"Buenos aire, formosa 234555\",\n" +
         "    \"latitude\": \"-12.06631014\",\n" +
         "    \"longitude\": \"-77.04746379\"\n" +
         "  },\n" +
@@ -70,7 +70,7 @@ const val listJson = "[\n" +
         "    \"preparation\": \"En una olla ancha o en una sartén añadimos 2 cucharadas de aceite vegetal junto con una taza de cebolla roja picada y dejamos dorar 5 minutos a fuego lento. Luego colocamos 1 cucharada de ajo molido y lo dejamos sudar 2 minutos. Ahora agregamos ¼ de taza de pasta de ají mirasol, ¼ de taza de crema de ají amarillo licuado sin venas ni pepas y 1 cucharada de ají panca licuado para darle color y dejamos cocer lentamente hasta que el aceite se separe de los ingredientes. Luego añadimos 2 rebanadas de pan de molde sin corteza previamente remojado en un chorro de leche evaporada y lo movemos con una cuchara de madera lentamente dejando que se cocine hasta que bote burbujas. A continuación añadimos una pechuga de pollo cocinada previamente en agua y sal deshuesado y deshilachado en tiras gruesas. Agregamos ahora ½ taza del caldo en donde se sancochó el pollo y dejamos cocinar unos cuantos minutos. Ahora añadimos un chorro de leche evaporada, sal, pimienta, una cucharada pecanas molidas y una cucharada de queso parmesano estos 2 últimos ingredientes son opcionales. Finalmente, se sirve en un plato unas rodajas de papas sancochadas y cubrimos con el ají de gallina agregando pecanas molidas por encima, medio huevo cocido, aceituna y ¡LISTO!.\",\n" +
         "    \"urlImg\": \"https://patasca.net/wp-content/uploads/2021/10/aji-de-gallina.jpg\",\n" +
         "    \"institute\": \"Establecimiento 06\",\n" +
-        "    \"AddressInstitute\": \"Buenos aire, formosa 234555\",\n" +
+        "    \"addressInstitute\": \"Buenos aire, formosa 234555\",\n" +
         "    \"latitude\": \"-11.9743063\",\n" +
         "    \"longitude\": \"-77.0414384\"\n" +
         "  },\n" +
@@ -81,7 +81,7 @@ const val listJson = "[\n" +
         "    \"preparation\": \"Ponemos a cocinar las caiguas en agua con sal unos minutos y que luego dejamos que  se enfríe en agua con hielo, y dejamos reposar por unos momentos mientras preparamos el relleno. La caigua se rellena con res, picada a cuchillos, que previamente fue guisada con abundante cebolla, poco ajo, poco ají panca y su puntito de maní. Dejamos cocinar por unos minutos el relleno hasta que tenga ese color tan característico de un aderezo, luego echamos sal, pimienta y comino al gusto. A ese guiso le agregamos una pasa, su huevito y su aceituna, ya está listo para colocarnos en nuestra caigua que previamente fue hervida. Rellenamos nuestras caiguas con nuestro guiso y las acomodamos en una olla, con más relleno y jugo, las guisamos unos minutos a fuego bajo. Las caiguas están listas, las retiramos de la olla y las acompañamos con arroz y papa al gusto.\",\n" +
         "    \"urlImg\": \"https://www.comidasperuanas.vip/wp-content/uploads/2020/05/caigua-rellena-1.jpg\",\n" +
         "    \"institute\": \"Establecimiento 07\",\n" +
-        "    \"AddressInstitute\": \"Buenos aire, formosa 234555\",\n" +
+        "    \"addressInstitute\": \"Buenos aire, formosa 234555\",\n" +
         "    \"latitude\": \"-11.9743063\",\n" +
         "    \"longitude\": \"-77.0567592\"\n" +
         "  },\n" +
@@ -103,7 +103,7 @@ const val listJson = "[\n" +
         "    \"preparation\": \"Cortamos un 1 kg de filete de pescado en cubos medianos, de no más de 2 cm de lado, y lo sazonamos con sal dejándolo reposar por 10 minutos en una cacerola fría. Añadimos ahora un ají limo cortado en rodajas muy finas, lo mezclamos con los trozos de pescado dejándolo reposar por 5 minutos. Agregamos ½ cebolla roja cortada en tiras finas previamente lavada y lo movemos para luego probar el punto de sal. Ahora añadimos pimienta blanca molida y lo movemos para colocar el jugo de 20 o 30 limones dependiendo de su tamaño que exprimiremos 1 a 1 sobre el pescado sin apretar demasiado, puesto que si se exprime todo el limón saldrá un sabor amargo de la piel blanco por ello con el resto se puede hacer limonada. Luego de colocar el jugo de limón sobre el pescado esperamos 1 minuto sin son pescados blancos. Por último añadimos otra cebolla roja con corte  juliana y otro ají limo. Antes de servir debemos probar su sabor para que tenga ese punto de acidez y picantito perfecto y ¡LISTO!\",\n" +
         "    \"urlImg\": \"https://portal.andina.pe/EDPfotografia3/Thumbnail/2019/02/20/000565530W.jpg\",\n" +
         "    \"institute\": \"Establecimiento 09\",\n" +
-        "    \"AddressInstitute\": \"Buenos aire, formosa 234555\",\n" +
+        "    \"addressInstitute\": \"Buenos aire, formosa 234555\",\n" +
         "    \"latitude\": \"-11.9892094\",\n" +
         "    \"longitude\": \"-77.0521244\"\n" +
         "  },\n" +
@@ -114,8 +114,23 @@ const val listJson = "[\n" +
         "    \"preparation\": \"Primero colocamos en un bol 1 cuy y lo aderezamos con abundante sal esparciendo por todo su cuerpo y reservamos. Ahora en un pequeño tazón colocamos 5 dientes de ajos triturados, 1 chorro de aceite, 1 pizca de pimienta, 1 pizca de comino, 1 pizca de sal y mezclamos todos los ingredientes. Luego añadimos el jugo de 1 limón, 5 flores de huacatay y volvemos a mezclar los ingredientes. Una vez hecho todos los pasos aderezamos el cuy por dentro y por fuera con la preparación que acabamos de hacer, introducimos por dentro de su cuerpo 9 ramas de huacatay dobladas, lo colocamos en una fuente y lo llevamos al horno por 1 hora aproximadamente a 250º. Por último verificamos la correcta cocción del cuy y lo dejamos en el horno más tiempo de ser necesario, servimos en un plato y ¡LISTO!\",\n" +
         "    \"urlImg\": \"https://comeperuano.b-cdn.net/wp-content/uploa  I  ds/2020/05/receta-cuy-frito.....jpg\",\n" +
         "    \"institute\": \"Establecimiento 10\",\n" +
-        "    \"AddressInstitute\": \"Buenos aire, formosa 234555\",\n" +
+        "    \"addressInstitute\": \"Buenos aire, formosa 234555\",\n" +
         "    \"latitude\": \"-11.9605076\",\n" +
         "    \"longitude\": \"-77.0811618\"\n" +
+        "  }\n" +
+        "]"
+
+
+const val listJsonTest = "[\n" +
+        "  {\n" +
+        "    \"id\": 1,\n" +
+        "    \"title\": \"Receta de Tallarines Verdes\",\n" +
+        "    \"description\": \"Aunque\",\n" +
+        "    \"preparation\": \"Lo primero\",\n" +
+        "    \"urlImg\": \"https://www.comidastipicasperuanas.com/wp-content/uploads/2022/03/Receta-de-tallarines-verdes-Comidas-Peruanas.jpg\",\n" +
+        "    \"institute\": \"Establecimiento 01\",\n" +
+        "    \"addressInstitute\": \"Buenos aire, formosa 234555\",\n" +
+        "    \"latitude\": \"-11.99405732\",\n" +
+        "    \"longitude\": \"-77.06241231\"\n" +
         "  }\n" +
         "]"
