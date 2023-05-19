@@ -21,17 +21,20 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.gb.vale.mobilechallenget.R
+import com.gb.vale.mobilechallenget.model.FlagButton
+import com.gb.vale.mobilechallenget.presentation.home.HomeViewModel
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun DetailScreen(viewModel: DetailViewModel, navController: NavController,recipeModel : String) {
+fun DetailScreen(viewModel: DetailViewModel, homeViewModel: HomeViewModel,
+                 navController: NavController, recipeModel : String) {
 
     viewModel.idDetail = recipeModel.toLong()
     val scroll = rememberScrollState(0)
 
     Scaffold(
-        topBar = { TopAppBarDetail(navController) }) {
+        topBar = { TopAppBarDetail(navController,homeViewModel) }) {
             Column(modifier = Modifier.imePadding()) {
                 AvatarRecipe(viewModel.uiStateDetail.recipeModel.urlImg)
                 Row(modifier = Modifier.fillMaxWidth().padding(20.dp)){
@@ -51,10 +54,10 @@ fun DetailScreen(viewModel: DetailViewModel, navController: NavController,recipe
                             border = BorderStroke(1.dp, Color.Black),
                             colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.green)),
                             onClick = {
+                                FlagButton.flagButton = false
                                 navController.navigate(Screen.MapScreen.route)
                             }) {
-                            Text(text = "Mapa"
-                            )
+                            Text(text = "Mapa")
                         }
 
                 }
@@ -84,7 +87,7 @@ fun DetailScreen(viewModel: DetailViewModel, navController: NavController,recipe
 
 @Composable
 fun TopAppBarDetail(
-    navController: NavController
+    navController: NavController,homeViewModel: HomeViewModel
 ) {
     Box {
         TopAppBar(
@@ -103,6 +106,7 @@ fun TopAppBarDetail(
             },
             navigationIcon = {
                 IconButton(onClick = {
+                    homeViewModel.floatingButton = true
                     navController.popBackStack()
                 }) {
                     Icon(

@@ -1,14 +1,25 @@
 package com.gb.vale.mobilechallenget.presentation
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.annotation.MainThread
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import com.gb.vale.mobilechallenget.R
+import com.gb.vale.mobilechallenget.model.FlagButton.flagButton
 import com.gb.vale.mobilechallenget.presentation.home.HomeViewModel
 import com.gb.vale.mobilechallenget.ui.theme.MobileChallengeTTheme
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Navigation
@@ -17,19 +28,41 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     private val viewModel: HomeViewModel by viewModels()
+    @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MobileChallengeTTheme {
-                Surface(color = MaterialTheme.colors.background) {
-                    Navigation()
+                Scaffold(floatingActionButtonPosition = FabPosition.End
+                ,floatingActionButton = {
+                        if (viewModel.floatingButton){
+                            FloatingActionButton(modifier = Modifier.testTag("buttonMapNext"), onClick = {
+
+                                MapUpdateActivity.newInstance(this)
+                            }) {
+                                Icon(painter = painterResource(id = R.drawable.ic_map_custom), contentDescription = "next map")
+                            }
+                        }
+                    }) {
+                    Navigation(viewModel)
                 }
+
             }
         }
 
         viewModel.loadInsertDataBase()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (flagButton)viewModel.floatingButton = true
+        flagButton = true
+    }
 }
+
+
+
+
 
 
 @Composable

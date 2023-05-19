@@ -3,6 +3,7 @@ package com.gb.vale.mobilechallenget.utils
 import android.content.Context
 import android.content.res.Resources
 import android.os.Bundle
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import com.gb.vale.mobilechallenget.model.RecipeModel
 import com.gb.vale.mobilechallenget.repository.db.entity.RecipeEntity
@@ -53,4 +54,10 @@ fun String.isEmailValid(): Boolean {
 
 fun String.lengthPlus1(): Int {
     return this.length + 1
+}
+
+fun NavHostController.navigateBackTo() {
+    while(backQueue.size > 2) {
+        popBackStack()
+    }
 }

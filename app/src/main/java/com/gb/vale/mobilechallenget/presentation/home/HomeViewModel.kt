@@ -12,6 +12,7 @@ import com.gb.vale.mobilechallenget.usecases.DataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,9 +26,14 @@ class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase,pri
     var uiState by mutableStateOf(RecipesUiState())
 
     var uiLoading by mutableStateOf(true)
+    var floatingButton by mutableStateOf(true)
 
     init {
-        loadRecipes()
+        viewModelScope.launch(ioDispatcher) {
+            delay(500)
+            loadRecipes()
+        }
+
     }
 
      fun loadRecipes() {

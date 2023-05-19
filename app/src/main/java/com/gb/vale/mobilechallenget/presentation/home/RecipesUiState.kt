@@ -7,5 +7,6 @@ data class RecipesUiState(
     var recipes: List<RecipeModel> = emptyList(),
     var recipesFilter: List<RecipeModel> = emptyList(),
     var searchQuery: String = EMPTY,
-    var filter: Boolean = false
+    var filter: Boolean = false,
+    var buttonMap: Boolean = true
 )

@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.sharp.Close
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -24,6 +25,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,6 +35,7 @@ import androidx.navigation.NavController
 import com.gb.vale.mobilechallenget.R
 import com.gb.vale.mobilechallenget.components.CircleAvatar
 import com.gb.vale.mobilechallenget.model.RecipeModel
+import com.gb.vale.mobilechallenget.presentation.MapUpdateActivity
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 import com.gb.vale.mobilechallenget.utils.EMPTY
 
@@ -94,6 +97,7 @@ private fun SearchRecipes(
                     value = viewModel.uiState.searchQuery,
                     cursorBrush = SolidColor(MaterialTheme.colors.primary),
                     onValueChange = {
+                        viewModel.floatingButton = false
                         viewModel.uiState = viewModel.uiState.copy(searchQuery = it)
                     }
                 )
@@ -124,7 +128,6 @@ fun ListInitialRecipes(
         modifier = Modifier
             .fillMaxSize()
     ) {
-
         if (viewModel.uiState.recipes.isNotEmpty()) {
 
             Text(
@@ -144,6 +147,7 @@ fun ListInitialRecipes(
                     RecipesItem(
                         recipe = recipe,
                         openNewChatAction = {
+                            viewModel.floatingButton = false
                             navController.navigate(Screen.DetailScreen.withArgs(recipe.id.toString()))
                         }
                     )
