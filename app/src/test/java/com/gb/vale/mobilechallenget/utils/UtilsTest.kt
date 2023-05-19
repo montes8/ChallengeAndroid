@@ -32,6 +32,6 @@ class UtilsTest {
 
     @Test
     fun `validation text length`(){
-        Assert.assertEquals("prueba".lengthPlus1(),4)
+        Assert.assertEquals("pru".lengthPlus1(),4)
     }
 }
