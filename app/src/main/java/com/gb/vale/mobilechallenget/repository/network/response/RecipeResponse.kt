@@ -11,7 +11,7 @@ data class RecipeResponse(
     @SerializedName("preparation") val preparation : String?,
     @SerializedName("urlImg") val urlImg : String?,
     @SerializedName("institute") val institute : String?,
-    @SerializedName("AddressInstitute") val addressInstitute : String?,
+    @SerializedName("addressInstitute") val addressInstitute : String?,
     @SerializedName("latitude") val latitude : String?,
     @SerializedName("longitude") val longitude : String?
 ){

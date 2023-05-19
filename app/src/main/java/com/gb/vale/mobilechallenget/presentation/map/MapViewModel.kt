@@ -18,8 +18,6 @@ class MapViewModel @Inject constructor(
 
 
     var uiStateMap by mutableStateOf(MapUiState())
-        set
-
 
     init {
         viewModelScope.launch {

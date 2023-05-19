@@ -95,7 +95,7 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideChallengeService(retrofit: Retrofit) = retrofit.create(ChallengeService::class.java)
+    fun provideChallengeService(retrofit: Retrofit): ChallengeService = retrofit.create(ChallengeService::class.java)
 
 
     @Singleton
@@ -103,8 +103,6 @@ object NetworkModule {
     fun providerHeaderInterceptor(): Interceptor {
         return ApiInterceptor()
     }
-
-
 }
 
 class ApiInterceptor @Inject constructor() : Interceptor {

@@ -1,8 +1,6 @@
 package com.gb.vale.mobilechallenget.model
 
-
 import com.google.maps.android.compose.MarkerState
-
 
 class RecipeModelObserver(
     var recipes  : ArrayList<RecipeModel> = arrayListOf(),

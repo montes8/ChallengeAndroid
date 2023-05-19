@@ -17,10 +17,8 @@ class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase
 
 
     var uiState by mutableStateOf(RecipesUiState())
-         set
 
     var uiLoading by mutableStateOf(true)
-        set
 
     init {
         loadRecipes()

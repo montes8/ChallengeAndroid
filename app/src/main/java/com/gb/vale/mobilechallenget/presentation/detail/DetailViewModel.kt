@@ -18,7 +18,6 @@ class DetailViewModel @Inject constructor(
 
 
     var uiStateDetail by mutableStateOf(DetailUiState())
-        set
 
     var idDetail : Long = 1
 

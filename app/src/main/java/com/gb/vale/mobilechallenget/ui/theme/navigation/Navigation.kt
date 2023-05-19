@@ -34,11 +34,7 @@ fun Navigation() {
           DetailScreen(hiltViewModel(),navController, it.arguments?.getString("idRecipes")?:"1")
         }
 
-        composable(route = Screen.MapScreen.route) {
-            MapScreen(hiltViewModel())
-        }
-
-
+        composable(route = Screen.MapScreen.route) { MapScreen(hiltViewModel())}
     }
 
 }
