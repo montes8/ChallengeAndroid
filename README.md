@@ -26,3 +26,7 @@
 # HOME y MAP (Activitys) la navegacion se pasa de un activity a otro 
 
 # hay un boton flotante que tambien nos lleva a un mapa el cual lo cree en una actividad diferente a la del home
+
+
+# agrege ci para subir el proyecto en github y validar que todo es test este correcto
+# https://github.com/montes8/Mobilechallenget
