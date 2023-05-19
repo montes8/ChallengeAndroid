@@ -5,8 +5,6 @@ import androidx.room.Room
 import com.gb.vale.mobilechallenget.BuildConfig
 import com.gb.vale.mobilechallenget.application.ChallengeApplication
 import com.gb.vale.mobilechallenget.repository.db.ChallengeDataBase
-import com.gb.vale.mobilechallenget.repository.db.DefaultBDCallback
-import com.gb.vale.mobilechallenget.repository.db.dao.EstablishmentDao
 import com.gb.vale.mobilechallenget.repository.network.ChallengeService
 import com.gb.vale.mobilechallenget.utils.CONTENT_TYPE
 import com.gb.vale.mobilechallenget.utils.MY_CONTENT_TYPE
@@ -25,7 +23,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
-import javax.inject.Provider
 import javax.inject.Singleton
 
 
@@ -35,16 +32,15 @@ class DataBaseModule {
 
     @Singleton
     @Provides
-    fun providerMyDatabase(@ApplicationContext context: Context,
-         provider: Provider<EstablishmentDao>
+    fun providerMyDatabase(@ApplicationContext context: Context
     ) =
-        Room.databaseBuilder(context, ChallengeDataBase::class.java, "challenge_mobile.db").
-        addCallback(DefaultBDCallback(provider)).build()
+        Room.databaseBuilder(context, ChallengeDataBase::class.java, "challenge_mobile.db")
+        .build()
 
     @Singleton
     @Provides
     fun providerUserDao(db: ChallengeDataBase) =
-        db.establishmentDao()
+        db.recipeDao()
 
 }
 

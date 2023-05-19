@@ -3,6 +3,10 @@ package com.gb.vale.mobilechallenget.presentation.home
 import android.annotation.SuppressLint
 import android.os.Handler
 import android.os.Looper
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -29,47 +33,45 @@ import androidx.navigation.NavController
 import com.gb.vale.mobilechallenget.R
 import com.gb.vale.mobilechallenget.components.CircleAvatar
 import com.gb.vale.mobilechallenget.model.RecipeModel
-import com.gb.vale.mobilechallenget.presentation.MainViewModel
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 import com.gb.vale.mobilechallenget.utils.EMPTY
-import com.google.gson.Gson
-import kotlinx.coroutines.flow.collectLatest
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(viewModel: MainViewModel, navController: NavController) {
+fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
     val handler = Handler(Looper.getMainLooper())
     val runnable = Runnable { viewModel.listFilter() }
-
-    LaunchedEffect(key1 = true) {
-        viewModel.eventFlow.collectLatest { event ->
-            when (event) {
-                is RecipeUiEvent.NavigateToDetail -> {
-                    val data : String = Gson().toJson(event.recipes)
-                    navController.navigate(Screen.DetailScreen.withArgs(
-                        data))
-                }
-
-                is RecipeUiEvent.NavigateToMap -> {
-                }
-                else -> {}
+    Box{
+        if (viewModel.uiLoading) {
+            AnimatedVisibility(
+                modifier = Modifier
+                    .matchParentSize(),
+                visible = viewModel.uiLoading,
+                enter = EnterTransition.None,
+                exit = fadeOut()
+            ) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .background(MaterialTheme.colors.background)
+                        .wrapContentSize()
+                )
             }
         }
-    }
 
-
-        Column( modifier = Modifier.padding(20.dp)
-        ){
+        Column( modifier = Modifier.padding(20.dp)){
             SearchRecipes(viewModel)
-            if (!viewModel.uiState.filter)ListInitialRecipes(viewModel)
+            if (!viewModel.uiState.filter)ListInitialRecipes(viewModel,navController)
             viewModel.uiState = viewModel.uiState.copy(filter = viewModel.uiState.searchQuery.isNotEmpty())
             if (viewModel.uiState.searchQuery.isNotEmpty()) {
 
                 handler.removeCallbacks(runnable)
                 handler.postDelayed(runnable, 150)
-                ListSearchRecipes(viewModel)
+                ListSearchRecipes(viewModel,navController)
             }
         }
+    }
+
+
 
 
 }
@@ -77,7 +79,7 @@ fun HomeScreen(viewModel: MainViewModel, navController: NavController) {
 @SuppressLint("SuspiciousIndentation")
 @Composable
 private fun SearchRecipes(
-    viewModel: MainViewModel
+    viewModel: HomeViewModel
 ) {
     val focusRequester = FocusRequester()
 
@@ -92,14 +94,14 @@ private fun SearchRecipes(
                     value = viewModel.uiState.searchQuery,
                     cursorBrush = SolidColor(MaterialTheme.colors.primary),
                     onValueChange = {
-                        viewModel.onEvent(RecipeEvent.SearchContact(it))
+                        viewModel.uiState = viewModel.uiState.copy(searchQuery = it)
                     }
                 )
             },
             actions = {
                 IconButton(
                     modifier = Modifier.padding(start = 10.dp), onClick = {
-                        viewModel.onEvent(RecipeEvent.SearchContact(EMPTY))
+                        viewModel.uiState = viewModel.uiState.copy(searchQuery = EMPTY)
                     }) {
                     Icon(
                         rememberVectorPainter(Icons.Sharp.Close),
@@ -116,7 +118,7 @@ private fun SearchRecipes(
 
 @Composable
 fun ListInitialRecipes(
-    viewModel: MainViewModel
+    viewModel: HomeViewModel, navController: NavController
 ) {
     Column(
         modifier = Modifier
@@ -141,7 +143,9 @@ fun ListInitialRecipes(
                 items(viewModel.uiState.recipes) { recipe ->
                     RecipesItem(
                         recipe = recipe,
-                        openNewChatAction = { viewModel.onEvent(RecipeEvent.DetailContact(recipe)) }
+                        openNewChatAction = {
+                            navController.navigate(Screen.DetailScreen.withArgs(recipe.id.toString()))
+                        }
                     )
                 }
             }
@@ -157,10 +161,15 @@ fun RecipesItem(
     Card(
         shape = RoundedCornerShape(20.dp),elevation = 10.dp,
         backgroundColor = MaterialTheme.colors.surface,
-        modifier = Modifier.padding(8.dp).fillMaxSize()
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxSize()
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth().clickable { openNewChatAction() }.padding(12.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable { openNewChatAction() }
+                .padding(12.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             CircleAvatar(image = recipe.urlImg)
@@ -177,7 +186,7 @@ fun RecipesItem(
                     text = recipe.description,
                     style = MaterialTheme.typography.body2,
                     color = MaterialTheme.colors.onSurface.copy(alpha = 0.55f),
-                    maxLines = 3,
+                    maxLines = 5,
                     overflow = TextOverflow.Ellipsis
                 )
 
@@ -188,7 +197,7 @@ fun RecipesItem(
 }
 
 @Composable
-fun ListSearchRecipes(viewModel: MainViewModel) {
+fun ListSearchRecipes(viewModel: HomeViewModel, navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -209,7 +218,9 @@ fun ListSearchRecipes(viewModel: MainViewModel) {
                 items(viewModel.uiState.recipesFilter) { recipe ->
                     RecipesItem(
                         recipe = recipe,
-                        openNewChatAction = { viewModel.onEvent(RecipeEvent.DetailContact(recipe))  }
+                        openNewChatAction = {
+                            navController.navigate(Screen.DetailScreen.withArgs(recipe.id.toString()))
+                        }
                     )
                 }
             }

@@ -1,4 +1,4 @@
-package com.gb.vale.mobilechallenget.presentation
+package com.gb.vale.mobilechallenget.presentation.home
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,26 +6,22 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gb.vale.mobilechallenget.model.RecipeModel
-import com.gb.vale.mobilechallenget.presentation.home.RecipeEvent
-import com.gb.vale.mobilechallenget.presentation.home.RecipeUiEvent
-import com.gb.vale.mobilechallenget.presentation.home.RecipesUiState
 import com.gb.vale.mobilechallenget.usecases.DataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val dataUseCase: DataUseCase) : ViewModel() {
+class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase
+) : ViewModel() {
 
 
     var uiState by mutableStateOf(RecipesUiState())
          set
 
+    var uiLoading by mutableStateOf(true)
+        set
 
-    private val _eventFlow = MutableSharedFlow<RecipeUiEvent>()
-    val eventFlow = _eventFlow.asSharedFlow()
     init {
         loadRecipes()
     }
@@ -33,24 +29,8 @@ class MainViewModel @Inject constructor(private val dataUseCase: DataUseCase) : 
     private fun loadRecipes() {
         viewModelScope.launch {
             val response =  dataUseCase.loadRecipes()
+            uiLoading = false
             uiState = uiState.copy(recipes = response)
-        }
-    }
-
-    fun onEvent(event: RecipeEvent) {
-        viewModelScope.launch {
-            when (event) {
-                is RecipeEvent.DetailContact -> {
-                    _eventFlow.emit(RecipeUiEvent.NavigateToDetail(event.recipe))
-                }
-                is RecipeEvent.SearchContact -> {
-                    uiState = uiState.copy(searchQuery = event.query)
-                }
-
-                is RecipeEvent.BackHomeRecipes -> {
-                    _eventFlow.emit(RecipeUiEvent.NavigateToBackHome)
-                }
-            }
         }
     }
 

@@ -5,6 +5,8 @@ import javax.inject.Inject
 
 class DataDBUseCase @Inject constructor(private val iDataDB : IDataDB
 ) {
-     fun loadRecipes() = iDataDB.loadEstablishment()
+     suspend fun loadRecipes() = iDataDB.loadRecipes()
+
+     suspend fun loadIdRecipes(id : Long) = iDataDB.loadRecipesId(id)
 
 }

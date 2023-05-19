@@ -17,6 +17,9 @@
         android:name=".application.ChallengeApplication"
         android:theme="@style/Theme.Challenge.NoActionBar"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCVxsvtX_TtDbPin-XsYoWSd2pwfwBFH50" />
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
