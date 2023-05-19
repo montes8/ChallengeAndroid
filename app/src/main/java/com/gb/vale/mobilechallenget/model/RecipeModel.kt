@@ -1,5 +1,6 @@
 package com.gb.vale.mobilechallenget.model
 
+import android.os.Parcelable
 import com.gb.vale.mobilechallenget.utils.EMPTY
 import kotlinx.android.parcel.Parcelize
 
@@ -15,4 +16,4 @@ data class RecipeModel(
     var addressInstitute : String = EMPTY,
     var latitude : String = "0.0",
     var longitude : String = "0.0"
-)
+):Parcelable
