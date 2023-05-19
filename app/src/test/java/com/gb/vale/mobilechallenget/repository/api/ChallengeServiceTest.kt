@@ -6,7 +6,7 @@ import com.gb.vale.mobilechallenget.utils.listJson
 import com.gb.vale.mobilechallenget.utils.listJsonTest
 import com.gb.vale.mobilechallenget.utils.parseStringGsonList
 import com.google.gson.Gson
-import junit.framework.Assert.assertEquals
+import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.runBlocking
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
