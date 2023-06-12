@@ -1,6 +1,7 @@
 package com.gb.vale.mobilechallenget.presentation.detail
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -22,26 +23,31 @@ import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.gb.vale.mobilechallenget.R
 import com.gb.vale.mobilechallenget.model.FlagButton
+import com.gb.vale.mobilechallenget.model.RecipeModel
 import com.gb.vale.mobilechallenget.presentation.home.HomeViewModel
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
+import com.gb.vale.mobilechallenget.utils.parseFromObjet
+import com.google.gson.Gson
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun DetailScreen(viewModel: DetailViewModel, homeViewModel: HomeViewModel,
+fun DetailScreen(homeViewModel: HomeViewModel,
                  navController: NavController, recipeModel : String) {
 
-    viewModel.idDetail = recipeModel.toLong()
+    val json = Gson()
+    val data : RecipeModel =parseFromObjet(recipeModel)
+   // viewModel.idDetail = recipeModel.toLong()
     val scroll = rememberScrollState(0)
 
     Scaffold(
         topBar = { TopAppBarDetail(navController,homeViewModel) }) {
             Column(modifier = Modifier.imePadding()) {
-                AvatarRecipe(viewModel.uiStateDetail.recipeModel.urlImg)
+                AvatarRecipe(data.urlImg)
                 Row(modifier = Modifier.fillMaxWidth().padding(20.dp)){
 
                         Text(
                             modifier = Modifier.weight(2f),
-                            text = viewModel.uiStateDetail.recipeModel.title,
+                            text = data.title,
                             style = MaterialTheme.typography.body1,
                             fontWeight = FontWeight.Bold,
                             maxLines = 1,
@@ -73,7 +79,7 @@ fun DetailScreen(viewModel: DetailViewModel, homeViewModel: HomeViewModel,
 
                 Text(
                     modifier = Modifier.padding(20.dp).verticalScroll(scroll),
-                    text = viewModel.uiStateDetail.recipeModel.preparation,
+                    text = data.preparation,
                     style = MaterialTheme.typography.subtitle1,
                     fontWeight = FontWeight.Normal,
                     overflow = TextOverflow.Ellipsis,

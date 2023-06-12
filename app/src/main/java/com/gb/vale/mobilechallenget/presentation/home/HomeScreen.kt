@@ -1,6 +1,7 @@
 package com.gb.vale.mobilechallenget.presentation.home
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import androidx.compose.animation.AnimatedVisibility
@@ -35,6 +36,8 @@ import com.gb.vale.mobilechallenget.components.CircleAvatar
 import com.gb.vale.mobilechallenget.model.RecipeModel
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 import com.gb.vale.mobilechallenget.utils.EMPTY
+import com.gb.vale.mobilechallenget.utils.parseFromString
+import com.google.gson.Gson
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -139,7 +142,8 @@ fun ListInitialRecipes(
                         recipe = recipe,
                         openNewChatAction = {
                             viewModel.floatingButton = false
-                            navController.navigate(Screen.DetailScreen.withArgs(recipe.id.toString()))
+                            navController.navigate(Screen.DetailScreen.withArgs(
+                                parseFromString(recipe)))
                         }
                     )
                 }
@@ -214,7 +218,8 @@ fun ListSearchRecipes(viewModel: HomeViewModel, navController: NavController) {
                     RecipesItem(
                         recipe = recipe,
                         openNewChatAction = {
-                            navController.navigate(Screen.DetailScreen.withArgs(recipe.id.toString()))
+                            navController.navigate(Screen.DetailScreen.withArgs(
+                                parseFromString(recipe)))
                         }
                     )
                 }

@@ -33,7 +33,7 @@ fun Navigation(homeViewModel : HomeViewModel) {
             arguments = listOf(
                 navArgument("idRecipes") { type = NavType.StringType },
             )) {
-          DetailScreen(hiltViewModel(),homeViewModel,navController, it.arguments?.getString("idRecipes")?:"1")
+          DetailScreen(homeViewModel,navController, it.arguments?.getString("idRecipes")?:"")
         }
 
         composable(route = Screen.MapScreen.route) { MapScreen(hiltViewModel())}

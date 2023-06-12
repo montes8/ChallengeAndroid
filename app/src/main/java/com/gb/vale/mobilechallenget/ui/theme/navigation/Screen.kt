@@ -7,6 +7,7 @@ sealed class Screen (open val route: String) {
     object DetailScreen : Screen("detail_screen")
     object MapScreen : Screen("map_screen")
 
+
     fun withArgs(vararg args: String = emptyArray(), optional: Map<String, String?> = emptyMap()): String {
     return buildString {
             append(route)
@@ -25,6 +26,8 @@ sealed class Screen (open val route: String) {
             }
         }
     }
+
+
 }
 
 
