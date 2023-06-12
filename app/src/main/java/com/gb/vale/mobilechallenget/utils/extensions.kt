@@ -1,5 +1,7 @@
 package com.gb.vale.mobilechallenget.utils
 
+import android.content.Context
+import android.net.Uri
 import com.gb.vale.mobilechallenget.repository.db.entity.RecipeEntity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -27,4 +29,14 @@ fun String.lengthPlus1(): Int {
     return this.length + 1
 }
 
+
+inline fun <reified T> parseFromObjet( value: String): T {
+    val jsonData = Gson()
+    return jsonData.fromJson(Uri.decode(value), object : TypeToken<T>() {}.type)
+}
+
+inline fun <reified T> parseFromString( value: T): String {
+    val jsonData = Gson()
+    return Uri.encode(jsonData.toJson(value))
+}
 
