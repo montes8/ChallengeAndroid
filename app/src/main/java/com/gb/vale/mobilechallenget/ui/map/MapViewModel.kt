@@ -1,4 +1,4 @@
-package com.gb.vale.mobilechallenget.presentation.detail
+package com.gb.vale.mobilechallenget.ui.map
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -15,26 +15,24 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class DetailViewModel @Inject constructor(
+class MapViewModel @Inject constructor(
     private val dataDBUseCase: DataDBUseCase, @IoDispatcher
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ViewModel() {
-
-    var uiStateDetail by mutableStateOf(DetailUiState())
-
-    var idDetail : Long = 1
+    
+    var uiStateMap by mutableStateOf(MapUiState())
 
     init {
-        viewModelScope.launch(ioDispatcher) {
-            delay(500)
-        loadDetailRecipe(idDetail)
+        viewModelScope.launch {
+            delay(1000)
+            loadDetailRecipe()
         }
     }
 
-    private fun loadDetailRecipe(id: Long) {
+    private fun loadDetailRecipe() {
         viewModelScope.launch(ioDispatcher) {
-            val response = dataDBUseCase.loadIdRecipes(id)
-            uiStateDetail = uiStateDetail.copy(recipeModel = response)
+            val response = dataDBUseCase.loadRecipes()
+            uiStateMap = uiStateMap.copy(recipeModel = response,loadMap = true)
         }
     }
 }

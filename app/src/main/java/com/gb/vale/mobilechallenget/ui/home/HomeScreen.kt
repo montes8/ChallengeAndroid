@@ -1,7 +1,6 @@
-package com.gb.vale.mobilechallenget.presentation.home
+package com.gb.vale.mobilechallenget.ui.home
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import android.os.Handler
 import android.os.Looper
 import androidx.compose.animation.AnimatedVisibility
@@ -37,7 +36,6 @@ import com.gb.vale.mobilechallenget.model.RecipeModel
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 import com.gb.vale.mobilechallenget.utils.EMPTY
 import com.gb.vale.mobilechallenget.utils.parseFromString
-import com.google.gson.Gson
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -45,22 +43,6 @@ fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
     val handler = Handler(Looper.getMainLooper())
     val runnable = Runnable { viewModel.listFilter() }
     Box{
-        if (viewModel.uiLoading) {
-            AnimatedVisibility(
-                modifier = Modifier
-                    .matchParentSize(),
-                visible = viewModel.uiLoading,
-                enter = EnterTransition.None,
-                exit = fadeOut()
-            ) {
-                CircularProgressIndicator(
-                    modifier = Modifier
-                        .background(MaterialTheme.colors.background)
-                        .wrapContentSize()
-                )
-            }
-        }
-
         Column( modifier = Modifier.padding(20.dp)){
             SearchRecipes(viewModel)
             if (!viewModel.uiState.filter)ListInitialRecipes(viewModel,navController)

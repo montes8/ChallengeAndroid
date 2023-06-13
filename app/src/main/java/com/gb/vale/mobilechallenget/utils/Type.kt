@@ -1,4 +1,4 @@
-package com.gb.vale.mobilechallenget.ui.theme
+package com.gb.vale.mobilechallenget.utils
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

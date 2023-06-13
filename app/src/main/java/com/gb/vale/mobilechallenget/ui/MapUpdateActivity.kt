@@ -1,4 +1,4 @@
-package com.gb.vale.mobilechallenget.presentation
+package com.gb.vale.mobilechallenget.ui
 
 import android.content.Context
 import android.content.Intent
@@ -6,9 +6,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import com.gb.vale.mobilechallenget.presentation.map.MapScreen
-import com.gb.vale.mobilechallenget.presentation.map.MapViewModel
-import com.gb.vale.mobilechallenget.ui.theme.MobileChallengeTTheme
+import com.gb.vale.mobilechallenget.ui.map.MapScreen
+import com.gb.vale.mobilechallenget.ui.map.MapViewModel
+import com.gb.vale.mobilechallenget.utils.MobileChallengeTTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

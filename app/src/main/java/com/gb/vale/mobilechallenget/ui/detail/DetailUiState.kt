@@ -1,4 +1,4 @@
-package com.gb.vale.mobilechallenget.presentation.detail
+package com.gb.vale.mobilechallenget.ui.detail
 
 import com.gb.vale.mobilechallenget.model.RecipeModel
 

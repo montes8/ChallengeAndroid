@@ -1,7 +1,6 @@
-package com.gb.vale.mobilechallenget.presentation.detail
+package com.gb.vale.mobilechallenget.ui.detail
 
 import android.annotation.SuppressLint
-import android.net.Uri
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -24,7 +23,7 @@ import coil.compose.AsyncImage
 import com.gb.vale.mobilechallenget.R
 import com.gb.vale.mobilechallenget.model.FlagButton
 import com.gb.vale.mobilechallenget.model.RecipeModel
-import com.gb.vale.mobilechallenget.presentation.home.HomeViewModel
+import com.gb.vale.mobilechallenget.ui.home.HomeViewModel
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 import com.gb.vale.mobilechallenget.utils.parseFromObjet
 import com.google.gson.Gson

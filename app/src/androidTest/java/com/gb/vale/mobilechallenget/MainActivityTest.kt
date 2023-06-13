@@ -5,7 +5,7 @@ import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.junit4.ComposeContentTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.performClick
-import com.gb.vale.mobilechallenget.presentation.MainActivity
+import com.gb.vale.mobilechallenget.ui.MainActivity
 import org.junit.Rule
 import org.junit.Test
 

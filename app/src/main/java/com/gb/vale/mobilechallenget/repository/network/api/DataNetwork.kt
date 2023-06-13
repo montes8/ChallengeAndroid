@@ -9,16 +9,11 @@ import javax.inject.Inject
 class DataNetwork @Inject constructor(private val acmService : ChallengeService) : IDataNetwork {
 
     override  suspend fun loadRecipes(): List<RecipeModel> {
-        var data : List<RecipeModel> = ArrayList()
+        var data : List<RecipeModel>? = null
        val response = acmService.loadRecipes()
-        try {
             if (response.isSuccessful){
                 data = RecipeResponse.loadToRecipes(response.body()?:ArrayList())
             }
-        }catch (e:Exception){
-            data = ArrayList()
-        }
-        return data
+        return data?:throw Exception()
     }
-
 }

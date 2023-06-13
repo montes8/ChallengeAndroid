@@ -1,4 +1,4 @@
-package com.gb.vale.mobilechallenget.presentation.home
+package com.gb.vale.mobilechallenget.ui.home
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gb.vale.mobilechallenget.model.RecipeModel
 import com.gb.vale.mobilechallenget.repository.di.IoDispatcher
+import com.gb.vale.mobilechallenget.ui.base.BaseViewModel
 import com.gb.vale.mobilechallenget.usecases.DataDBUseCase
 import com.gb.vale.mobilechallenget.usecases.DataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,21 +21,20 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase,private val dataDBUseCase: DataDBUseCase,
                                         @IoDispatcher
                                         private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
-) : ViewModel() {
+) : BaseViewModel(ioDispatcher) {
 
     var uiState by mutableStateOf(RecipesUiState())
-    var uiLoading by mutableStateOf(true)
     var floatingButton by mutableStateOf(true)
 
     init {
-        viewModelScope.launch(ioDispatcher) {
+        execute {
             delay(500)
             loadRecipes()
         }
     }
 
      fun loadRecipes() {
-        viewModelScope.launch(ioDispatcher) {
+         execute {
             val response =  dataUseCase.loadRecipes()
             uiLoading = false
             uiState = uiState.copy(recipes = response)
@@ -42,7 +42,7 @@ class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase,pri
     }
 
     fun loadInsertDataBase(){
-        viewModelScope.launch(ioDispatcher) {
+        execute {
              dataDBUseCase.insertData()
         }
     }

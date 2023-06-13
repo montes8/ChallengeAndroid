@@ -1,4 +1,4 @@
-package com.gb.vale.mobilechallenget.presentation.home
+package com.gb.vale.mobilechallenget.ui.home
 
 import com.gb.vale.mobilechallenget.model.RecipeModel
 import com.gb.vale.mobilechallenget.utils.EMPTY

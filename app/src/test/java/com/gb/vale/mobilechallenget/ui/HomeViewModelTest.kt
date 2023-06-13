@@ -1,8 +1,8 @@
-package com.gb.vale.mobilechallenget.presentation
+package com.gb.vale.mobilechallenget.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.gb.vale.mobilechallenget.CoroutineTestRule
-import com.gb.vale.mobilechallenget.presentation.home.HomeViewModel
+import com.gb.vale.mobilechallenget.ui.home.HomeViewModel
 import com.gb.vale.mobilechallenget.repository.db.entity.RecipeEntity
 import com.gb.vale.mobilechallenget.usecases.DataDBUseCase
 import com.gb.vale.mobilechallenget.usecases.DataUseCase
