@@ -1,5 +1,8 @@
 package com.gb.vale.mobilechallenget.components
 
+import android.content.Context
+import android.widget.Toast
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -29,28 +32,99 @@ fun CircleAvatar(image: String?) {
             .transformations(CircleCropTransformation())
             .build(),
         contentDescription = null,
-        modifier  =  Modifier.size(80.dp).clip(CircleShape)
+        modifier = Modifier
+            .size(80.dp)
+            .clip(CircleShape)
     )
 }
 
 @Composable
 fun ProgressDialog(
-){
+) {
     Dialog(
-        onDismissRequest = { } ,
+        onDismissRequest = { },
         DialogProperties(
             dismissOnBackPress = false,
             dismissOnClickOutside = false
         )
     ) {
         CircularProgressIndicator(
-                modifier = Modifier
-                    .background(Color.Transparent)
-                    .wrapContentSize()
-            )
+            modifier = Modifier
+                .background(Color.Transparent)
+                .wrapContentSize(),
+            color = Color.Magenta
+        )
 
     }
 
+}
+
+
+@Composable
+fun DialogGeneric(
+    onClickButton: ((Boolean) -> Unit)? = null
+) {
+    Dialog(
+        onDismissRequest = {
+            onClickButton?.invoke(false)
+        },
+        DialogProperties(
+            dismissOnBackPress = false,
+            dismissOnClickOutside = false
+        )
+    ) {
+
+        Card(
+            //shape = MaterialTheme.shapes.medium,
+            shape = RoundedCornerShape(10.dp),
+            // modifier = modifier.size(280.dp, 240.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(8.dp),
+            elevation = 8.dp
+        ) {
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .background(Color.White)
+            ) {
+
+
+                Text(
+                    text = "Lorem Ipsum is simply dummy text",
+                    modifier = Modifier.padding(8.dp), fontSize = 20.sp
+                )
+
+                Text(
+                    text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard",
+                    modifier = Modifier.padding(8.dp)
+                )
+
+                Row(Modifier.padding(top = 10.dp)) {
+                    OutlinedButton(
+                        onClick = { onClickButton?.invoke(false) },
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp)
+                            .weight(1F)
+                    ) {
+                        Text(text = "Cancel")
+                    }
+
+
+                    Button(
+                        onClick = { onClickButton?.invoke(true) },
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(8.dp)
+                            .weight(1F)
+                    ) {
+                        Text(text = "Exit")
+                    }
+                }
+            }
+        }
+    }
 }
 
 @Composable
@@ -62,17 +136,20 @@ fun AlertDialogGeneric(
     dismissButton: String? = null,
     onConfirmButton: (() -> Unit)? = null,
     onDismissButton: (() -> Unit)? = null,
-    dismissDialog : () -> Unit) {
+    dismissDialog: () -> Unit
+) {
 
-    if(showDialog) {
+    if (showDialog) {
         AlertDialog(onDismissRequest = { dismissDialog() },
             title = title?.let {
                 @Composable { Text(text = title) }
             },
             text = {
-                Text(text = text,style = MaterialTheme.typography.body1.copy(
-                    lineHeight = 25.sp
-                ))
+                Text(
+                    text = text, style = MaterialTheme.typography.body1.copy(
+                        lineHeight = 25.sp
+                    )
+                )
             },
             confirmButton = {
                 TextButton(
@@ -99,3 +176,6 @@ fun AlertDialogGeneric(
         )
     }
 }
+
+fun Context.toast( value: String) =
+    Toast.makeText(this,value, Toast.LENGTH_SHORT).show()

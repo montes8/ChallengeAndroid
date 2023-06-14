@@ -15,22 +15,17 @@ import kotlinx.coroutines.launch
 open class BaseViewModel( @IoDispatcher
                      private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO): ViewModel() {
 
-
-    var uiLoading by mutableStateOf(false)
-    var uiError by mutableStateOf(false)
-    var uiErrorType by mutableStateOf(Throwable())
+    var uiStateBase by mutableStateOf(BaseUiState())
 
     fun execute(loading: Boolean = true,func:suspend ()->Unit){
         viewModelScope.launch(ioDispatcher){
             try {
-                uiLoading = loading
+                uiStateBase = uiStateBase.copy(loading = loading)
                 delay(2000)
                 func()
-                uiLoading = false
+                uiStateBase = uiStateBase.copy(loading = false)
             }catch (ex:Exception){
-                uiError = true
-                uiErrorType = ex
-                uiLoading = false
+                uiStateBase = uiStateBase.copy(error = true, errorType = ex, loading = false)
             }
         }
     }

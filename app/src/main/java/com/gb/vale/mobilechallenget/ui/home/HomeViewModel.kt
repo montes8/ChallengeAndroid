@@ -36,7 +36,6 @@ class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase,pri
      fun loadRecipes() {
          execute {
             val response =  dataUseCase.loadRecipes()
-            uiLoading = false
             uiState = uiState.copy(recipes = response)
         }
     }

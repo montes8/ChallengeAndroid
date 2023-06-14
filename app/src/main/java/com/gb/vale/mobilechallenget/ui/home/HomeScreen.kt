@@ -24,6 +24,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -32,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.gb.vale.mobilechallenget.R
 import com.gb.vale.mobilechallenget.components.CircleAvatar
+import com.gb.vale.mobilechallenget.components.toast
 import com.gb.vale.mobilechallenget.model.RecipeModel
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 import com.gb.vale.mobilechallenget.utils.EMPTY
@@ -40,6 +42,7 @@ import com.gb.vale.mobilechallenget.utils.parseFromString
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
+    val context = LocalContext.current
     val handler = Handler(Looper.getMainLooper())
     val runnable = Runnable { viewModel.listFilter() }
     Box{
@@ -55,6 +58,12 @@ fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
             }
         }
     }
+
+    if (viewModel.uiStateBase.popUpGeneric) {
+        context.toast(if (viewModel.uiStateBase.popUpGenericValue) "acepaste" else "cancelaste")
+        viewModel.uiStateBase = viewModel.uiStateBase.copy(popUpGeneric = false)
+    }
+
 }
 
 @SuppressLint("SuspiciousIndentation")

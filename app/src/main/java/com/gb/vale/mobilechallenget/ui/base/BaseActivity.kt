@@ -6,8 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.res.stringResource
-import com.gb.vale.mobilechallenget.components.AlertDialogGeneric
+import com.gb.vale.mobilechallenget.components.DialogGeneric
 import com.gb.vale.mobilechallenget.components.ProgressDialog
 import com.gb.vale.mobilechallenget.utils.MobileChallengeTTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,18 +24,11 @@ abstract class BaseActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MobileChallengeTTheme {
-                if (getViewModel()?.uiLoading == true){ ProgressDialog()}
-                if (getViewModel()?.uiError == true){
-                    AlertDialogGeneric(
-                        title  = "titulo del error",
-                        text = "Probando el mensaje de errior",
-                        dismissButton = "Cancelar",
-                        confirmButton = "Aceptar",
-                        showDialog = getViewModel()?.uiError == true,
-                        onConfirmButton = {
-                            getViewModel()?.uiError = false
-                        }) {
-                        getViewModel()?.uiError = false
+                if (getViewModel()?.uiStateBase?.loading == true){ ProgressDialog() }
+                if (getViewModel()?.uiStateBase?.error == true){
+                    DialogGeneric {
+                        getViewModel()?.uiStateBase = getViewModel()?.uiStateBase?.copy(error = false,
+                        popUpGeneric = true, popUpGenericValue = it)?:BaseUiState()
                     }
                 }
                 SetScreenConfig()
