@@ -29,4 +29,4 @@
 
 
 # agrege ci para subir el proyecto en github y validar que todo es test este correcto
-# https://github.com/montes8/Mobilechallenget
+# https://github.com/montes8/ChallengeAndroid

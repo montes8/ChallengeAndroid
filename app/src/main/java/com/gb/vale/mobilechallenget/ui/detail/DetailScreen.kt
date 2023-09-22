@@ -10,6 +10,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
@@ -23,23 +24,34 @@ import coil.compose.AsyncImage
 import com.gb.vale.mobilechallenget.R
 import com.gb.vale.mobilechallenget.model.FlagButton
 import com.gb.vale.mobilechallenget.model.RecipeModel
+import com.gb.vale.mobilechallenget.ui.InitUiEvent
 import com.gb.vale.mobilechallenget.ui.home.HomeViewModel
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 import com.gb.vale.mobilechallenget.utils.parseFromObjet
-import com.google.gson.Gson
+import kotlinx.coroutines.flow.collectLatest
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun DetailScreen(homeViewModel: HomeViewModel,
                  navController: NavController, recipeModel : String) {
 
-    val json = Gson()
     val data : RecipeModel =parseFromObjet(recipeModel)
-   // viewModel.idDetail = recipeModel.toLong()
     val scroll = rememberScrollState(0)
 
+    LaunchedEffect(key1 = true) {
+        homeViewModel.eventFlow.collectLatest { event ->
+            when (event) {
+                is InitUiEvent.NavigateToMap -> {
+                    navController.navigate(Screen.MapScreen.route)
+                }
+                is InitUiEvent.NavigateToBack -> {
+                    navController.popBackStack()
+                }
+                else ->  {} } }
+    }
+
     Scaffold(
-        topBar = { TopAppBarDetail(navController,homeViewModel) }) {
+        topBar = { TopAppBarDetail(homeViewModel) }) {
             Column(modifier = Modifier.imePadding()) {
                 AvatarRecipe(data.urlImg)
                 Row(modifier = Modifier.fillMaxWidth().padding(20.dp)){
@@ -60,7 +72,7 @@ fun DetailScreen(homeViewModel: HomeViewModel,
                             colors = ButtonDefaults.buttonColors(backgroundColor = colorResource(id = R.color.green)),
                             onClick = {
                                 FlagButton.flagButton = false
-                                navController.navigate(Screen.MapScreen.route)
+                                homeViewModel.onClickMap()
                             }) {
                             Text(text = "Mapa")
                         }
@@ -91,8 +103,7 @@ fun DetailScreen(homeViewModel: HomeViewModel,
 }
 
 @Composable
-fun TopAppBarDetail(
-    navController: NavController,homeViewModel: HomeViewModel
+fun TopAppBarDetail(homeViewModel: HomeViewModel
 ) {
     Box {
         TopAppBar(
@@ -112,7 +123,7 @@ fun TopAppBarDetail(
             navigationIcon = {
                 IconButton(onClick = {
                     homeViewModel.floatingButton = true
-                    navController.popBackStack()
+                    homeViewModel.onClickBack()
                 }) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,

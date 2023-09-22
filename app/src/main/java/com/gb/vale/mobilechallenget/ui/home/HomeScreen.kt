@@ -35,9 +35,11 @@ import com.gb.vale.mobilechallenget.R
 import com.gb.vale.mobilechallenget.components.CircleAvatar
 import com.gb.vale.mobilechallenget.components.toast
 import com.gb.vale.mobilechallenget.model.RecipeModel
+import com.gb.vale.mobilechallenget.ui.InitUiEvent
 import com.gb.vale.mobilechallenget.ui.theme.navigation.Screen
 import com.gb.vale.mobilechallenget.utils.EMPTY
 import com.gb.vale.mobilechallenget.utils.parseFromString
+import kotlinx.coroutines.flow.collectLatest
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -45,10 +47,23 @@ fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
     val context = LocalContext.current
     val handler = Handler(Looper.getMainLooper())
     val runnable = Runnable { viewModel.listFilter() }
+
+
+    LaunchedEffect(key1 = true) {
+        viewModel.eventFlow.collectLatest { event ->
+            when (event) {
+                is InitUiEvent.NavigateToDetail -> {
+                    navController.navigate(Screen.DetailScreen.withArgs(
+                        event.data))
+                }
+                else ->  {} } }
+    }
+
+
     Box{
         Column( modifier = Modifier.padding(20.dp)){
             SearchRecipes(viewModel)
-            if (!viewModel.uiState.filter)ListInitialRecipes(viewModel,navController)
+            if (!viewModel.uiState.filter)ListInitialRecipes(viewModel)
             viewModel.uiState = viewModel.uiState.copy(filter = viewModel.uiState.searchQuery.isNotEmpty())
             if (viewModel.uiState.searchQuery.isNotEmpty()) {
 
@@ -60,7 +75,7 @@ fun HomeScreen(viewModel: HomeViewModel, navController: NavController) {
     }
 
     if (viewModel.uiStateBase.popUpGeneric) {
-        context.toast(if (viewModel.uiStateBase.popUpGenericValue) "acepaste" else "cancelaste")
+        context.toast(if (viewModel.uiStateBase.popUpGenericValue) "aceptaste" else "cancelaste")
         viewModel.uiStateBase = viewModel.uiStateBase.copy(popUpGeneric = false)
     }
 
@@ -107,7 +122,7 @@ private fun SearchRecipes(
 
 @Composable
 fun ListInitialRecipes(
-    viewModel: HomeViewModel, navController: NavController
+    viewModel: HomeViewModel
 ) {
     Column(
         modifier = Modifier
@@ -133,8 +148,7 @@ fun ListInitialRecipes(
                         recipe = recipe,
                         openNewChatAction = {
                             viewModel.floatingButton = false
-                            navController.navigate(Screen.DetailScreen.withArgs(
-                                parseFromString(recipe)))
+                            viewModel.onClickDetail(parseFromString(recipe))
                         }
                     )
                 }

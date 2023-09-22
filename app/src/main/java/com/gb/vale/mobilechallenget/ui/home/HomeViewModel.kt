@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gb.vale.mobilechallenget.model.RecipeModel
 import com.gb.vale.mobilechallenget.repository.di.IoDispatcher
+import com.gb.vale.mobilechallenget.ui.InitUiEvent
 import com.gb.vale.mobilechallenget.ui.base.BaseViewModel
 import com.gb.vale.mobilechallenget.usecases.DataDBUseCase
 import com.gb.vale.mobilechallenget.usecases.DataUseCase
@@ -14,6 +15,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,6 +27,7 @@ class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase,pri
 
     var uiState by mutableStateOf(RecipesUiState())
     var floatingButton by mutableStateOf(true)
+    val eventFlow = MutableSharedFlow<InitUiEvent>()
 
     init {
         execute {
@@ -46,6 +49,24 @@ class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase,pri
         }
     }
 
+    fun onClickMap(){
+        execute(false) {
+            eventFlow.emit(InitUiEvent.NavigateToMap)
+        }
+    }
+
+    fun onClickBack(){
+        execute(false)  {
+            eventFlow.emit(InitUiEvent.NavigateToBack)
+        }
+    }
+
+    fun onClickDetail(data : String){
+        execute(false) {
+            eventFlow.emit(InitUiEvent.NavigateToDetail(data))
+        }
+    }
+
     fun listFilter() {
         uiState = uiState.copy(
             recipesFilter = filterRecipes(uiState.searchQuery, ArrayList(uiState.recipes)))
@@ -54,10 +75,15 @@ class HomeViewModel @Inject constructor(private val dataUseCase: DataUseCase,pri
     private fun filterRecipes(textSearch: String, listModel: ArrayList<RecipeModel>): List<RecipeModel> {
         val list: ArrayList<RecipeModel> = ArrayList()
         list.addAll(filterLetterInitial(textSearch, listModel))
+        listModel.removeAll(filterLetterInitial(textSearch, listModel).toSet())
+        list.addAll(filterLetter(textSearch, listModel))
         return list
     }
 
     private fun filterLetterInitial(textSearch: String, listModel: List<RecipeModel>) =
         listModel.filter { it.title.startsWith(textSearch, true) }
+
+    private fun filterLetter(textSearch: String, listModel: List<RecipeModel>) =
+        listModel.filter { it.title.contains(textSearch, true) }
 
 }
