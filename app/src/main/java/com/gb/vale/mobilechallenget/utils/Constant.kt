@@ -1,7 +1,7 @@
 package com.gb.vale.mobilechallenget.utils
 
 const val EMPTY = ""
-const val URL_BASE = "https://431a-2800-200-e3c0-1123-5d9-8dae-1dd2-5b7d.ngrok-free.app/"
+const val URL_BASE = "https://d9a5-2800-200-e3c0-1123-484c-49cf-9d59-6617.ngrok-free.app/"
 const val MY_TIME_ON = 60L
 
 const val CONTENT_TYPE = "text/json"

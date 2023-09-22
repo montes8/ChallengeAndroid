@@ -2,19 +2,12 @@ package com.gb.vale.mobilechallenget.ui
 
 import android.annotation.SuppressLint
 import androidx.activity.viewModels
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.fadeOut
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import com.gb.vale.mobilechallenget.R
-import com.gb.vale.mobilechallenget.components.ProgressDialog
 import com.gb.vale.mobilechallenget.model.FlagButton.flagButton
 import com.gb.vale.mobilechallenget.ui.base.BaseActivity
 import com.gb.vale.mobilechallenget.ui.base.BaseViewModel
