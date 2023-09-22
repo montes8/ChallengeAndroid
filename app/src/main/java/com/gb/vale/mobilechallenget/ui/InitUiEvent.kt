@@ -5,5 +5,7 @@ sealed class InitUiEvent {
 
     object NavigateToMap  : InitUiEvent()
 
+    object NavigateToDefault  : InitUiEvent()
+
     object NavigateToBack : InitUiEvent()
 }

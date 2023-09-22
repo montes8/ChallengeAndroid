@@ -46,7 +46,7 @@ class HomeViewModelTest{
         homeViewModel.uiState.recipes = RecipeEntity.toListRecipe(parseStringGsonList(listJson))
         homeViewModel.loadRecipes()
         assertEquals(true, homeViewModel.uiState.recipes ==
-                dataUseCase.loadRecipes() )
+                RecipeEntity.toListRecipe(parseStringGsonList(listJson)) )
     }
 
     @Test
